@@ -1,17 +1,17 @@
 Summary:	Mount a Windows CE based device on your Linux file system using FUSE
 Summary(pl.UTF-8):	Montowanie urządzeń z Windows CE w linuksowym systemie plików
 Name:		synce-fur
-Version:	0.4.6
+Version:	0.6
 Release:	1
 License:	GPL v2
-Group:		Applications
-Source0:	http://downloads.sourceforge.net/project/synce/FUR/%{version}/FUR-%{version}.tar.gz
-# Source0-md5:	76688e4b208e33d72e53c0f7dcc59534
+Group:		Applications/System
+Source0:	http://downloads.sourceforge.net/synce/fur-%{version}.tar.gz
+# Source0-md5:	02c91b8052309c335bbcb95b0e5bfbd8
 URL:		http://www.synce.org/
 BuildRequires:	libfuse-devel
 BuildRequires:	pkgconfig
-BuildRequires:	synce-librapi2-devel > 0.9.1
-BuildRequires:	synce-libsynce-devel
+BuildRequires:	synce-core-lib-devel >= 0.17
+Requires:	synce-core-lib >= 0.17
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -23,7 +23,7 @@ FUR to aplikacja pozwalająca użytkownikowi montować urządzenia oparte
 na Windows CE jako normalne linuksowe systemy plików.
 
 %prep
-%setup -q -n FUR-%{version}
+%setup -q -n fur-%{version}
 
 %build
 %configure
@@ -31,8 +31,9 @@ na Windows CE jako normalne linuksowe systemy plików.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_bindir}
-install -p Fur $RPM_BUILD_ROOT%{_bindir}
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
