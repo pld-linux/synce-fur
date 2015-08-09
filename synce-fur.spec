@@ -2,7 +2,7 @@ Summary:	Mount a Windows CE based device on your Linux file system using FUSE
 Summary(pl.UTF-8):	Montowanie urządzeń z Windows CE w linuksowym systemie plików
 Name:		synce-fur
 Version:	0.6
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/synce/fur-%{version}.tar.gz
